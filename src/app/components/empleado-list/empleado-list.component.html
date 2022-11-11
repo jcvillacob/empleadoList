@@ -1,0 +1,32 @@
+<div class="container mt-3">
+    <app-count-empleado [todos]="obtenerTotalEmpleados()"
+                        [hombres]="obtenerTotalMasculino()"
+                        [mujeres]="obtenerTotalFemenino()"
+                        (changeBtn)="obtenerCambios($event)"></app-count-empleado>
+    <div class="card mt-3">
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Legajo</th>
+                        <th>nombre</th>
+                        <th>Apellido</th>
+                        <th>Sexo</th>
+                        <th>Salario</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <ng-container *ngFor = 'let empleado of listEmpleado'>
+                        <tr *ngIf = 'radioBtnSelect == "Todos" || radioBtnSelect == empleado.sexo'>
+                            <th scope="row">{{empleado.legajo}}</th>
+                            <td>{{empleado.nombre}}</td>
+                            <td>{{empleado.apellido}}</td>
+                            <td>{{empleado.sexo}}</td>
+                            <td>USD {{empleado.salario | currency}}</td>
+                        </tr>
+                    </ng-container>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
